@@ -9,6 +9,7 @@ DATABASE_PATH = BASE_DIR / "vulnscan.db"
 def get_connection():
     """Create a connection to the SQLite database."""
     connection = sqlite3.connect(DATABASE_PATH, timeout=10)
+    connection.row_factory = sqlite3.Row
     return connection
 
 
