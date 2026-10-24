@@ -8,7 +8,10 @@ from database import update_scan
 from scanner.core import scan_website
 
 
-REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379/0")
+REDIS_URL = os.getenv("REDIS_URL", "").strip()
+
+if not REDIS_URL:
+    raise RuntimeError("REDIS_URL is missing from the environment.")
 
 celery_app = Celery(
     "vulnscan_lite",
