@@ -1,4 +1,4 @@
-
+import ssl
 import json
 import os
 
@@ -17,6 +17,8 @@ celery_app = Celery(
     "vulnscan_lite",
     broker=REDIS_URL,
     backend=REDIS_URL,
+    broker_use_ssl={"ssl_cert_reqs": ssl.CERT_REQUIRED},
+    redis_backend_use_ssl={"ssl_cert_reqs": ssl.CERT_REQUIRED},
 )
 
 celery_app.conf.update(
